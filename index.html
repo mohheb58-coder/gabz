@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تولید قبض</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; font-size: 14px; font-weight: bold; margin: 0; display: flex; flex-direction: column; align-items: center; }
+        
+        .receipt { 
+            width: 190mm; 
+            height: 54mm; 
+            border: 2px solid #000; 
+            margin: 8px auto; 
+            border-collapse: collapse; 
+            page-break-inside: avoid;
+        }
+        td { padding: 8px; vertical-align: top; }
+        .main { width: 70%; border-left: 2px dashed #000; }
+        .stub { width: 30%; }
+        
+        .field { margin-bottom: 5px; }
+        .date-field { direction: ltr; text-align: right; display: inline-block; }
+        .manager-sign { text-align: center; margin-top: 8px; font-size: 16px; }
+        
+        .num-main { text-align: left; margin-bottom: 5px; }
+        .num-stub { text-align: right; margin-bottom: 5px; }
+        
+        @media print { 
+            .no-print { display: none; }
+            body { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="no-print" style="padding: 10px; background: #f0f0f0; width: 100%; text-align: center;">
+    <strong>تنظیمات:</strong> شروع: <input type="number" id="startNum" value="1" style="width: 40px;"> 
+    تعداد: <input type="number" id="count" value="5" style="width: 40px;"> 
+    سال: <input type="text" id="yearVal" value="۱۴۰۵" style="width: 40px;">
+    بابت: <input type="text" id="babatText" style="width: 80px;">
+    <button onclick="generate()">تولید و نمایش</button>
+</div>
+
+<div id="container" style="width: 100%; display: flex; flex-direction: column; align-items: center;"></div>
+
+<script>
+    function generate() {
+        const container = document.getElementById('container');
+        const start = parseInt(document.getElementById('startNum').value);
+        const count = parseInt(document.getElementById('count').value);
+        const year = document.getElementById('yearVal').value;
+        const babat = document.getElementById('babatText').value;
+        container.innerHTML = '';
+
+        for (let i = 0; i < count; i++) {
+            const num = start + i;
+            container.innerHTML += `
+                <table class="receipt">
+                    <tr>
+                        <td class="main">
+                            <div class="num-main">شماره: ${num}</div>
+                            <div style="text-align:center; font-size:18px;">قبض رسید</div>
+                            <div class="field">درتاریخ: <span class="date-field">${year} / ..... / .....</span></div>
+                            <div class="field">مبلغ .................... ریال | بابت: ${babat}</div>
+                            <div class="field">توسط دانش‌آموز ....................... پایه: ........ کلاس: ......... پرداخت شد</div>
+                            <div class="manager-sign">مدیر مدرسه: حیدری</div>
+                        </td>
+                        <td class="stub">
+                            <div class="num-stub">شماره: ${num}</div>
+                            <div class="field">تاریخ: <span class="date-field">${year} / ..... / .....</span></div>
+                            <div class="field">مبلغ: ................ ریال</div>
+                            <div class="field">دانش‌آموز: ............</div>
+                            <div class="field">پایه: ............ کلاس: ............</div>
+                        </td>
+                    </tr>
+                </table>
+            `;
+        }
+    }
+</script>
+</body>
+</html>
