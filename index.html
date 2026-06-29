@@ -19,6 +19,9 @@
         .stub { width: 30%; }
         
         .field { margin-bottom: 5px; }
+        /* سایز کوچک‌تر برای بابت در ته‌برگ */
+        .stub-babat { font-size: 11px; margin-bottom: 5px; }
+        
         .date-field { direction: ltr; text-align: right; display: inline-block; }
         .manager-sign { text-align: center; margin-top: 8px; font-size: 16px; }
         
@@ -61,14 +64,15 @@
                             <div class="num-main">شماره: ${num}</div>
                             <div style="text-align:center; font-size:18px;">قبض رسید</div>
                             <div class="field">درتاریخ: <span class="date-field">${year} / ..... / .....</span></div>
-                            <div class="field">مبلغ .................... ریال | بابت: ${babat}</div>
+                            <div class="field">مبلغ .................... تومان | بابت: ${babat}</div>
                             <div class="field">توسط دانش‌آموز ....................... پایه: ........ کلاس: ......... پرداخت شد</div>
                             <div class="manager-sign">مدیر مدرسه: حیدری</div>
                         </td>
                         <td class="stub">
                             <div class="num-stub">شماره: ${num}</div>
                             <div class="field">تاریخ: <span class="date-field">${year} / ..... / .....</span></div>
-                            <div class="field">مبلغ: ................ ریال</div>
+                            <div class="stub-babat">بابت: ${babat}</div>
+                            <div class="field">مبلغ: ................ تومان</div>
                             <div class="field">دانش‌آموز: ............</div>
                             <div class="field">پایه: ............ کلاس: ............</div>
                         </td>
